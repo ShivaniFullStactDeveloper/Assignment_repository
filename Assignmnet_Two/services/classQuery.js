@@ -10,8 +10,8 @@ function getClasses(callback) {
 // CREATE class
 function createClass(classData, callback) {
   database.query(
-    "INSERT INTO classes (class_name) VALUES ($1)",
-    [classData.class_name],
+    "INSERT INTO classes (class_name, teacher_id) VALUES ($1, $2)",
+    [classData.class_name, classData.teacher_id],
     (err, result) => {
       callback(err, result);
     }
@@ -21,8 +21,8 @@ function createClass(classData, callback) {
 // UPDATE class
 function updateClass(id, classData, callback) {
   database.query(
-    "UPDATE classes SET class_name=$1 WHERE class_id=$2",
-    [classData.class_name, id],
+    "UPDATE classes SET class_name=$1, teacher_id=$2 WHERE class_id=$3",
+    [classData.class_name,classData.teacher_id, id],
     (err, result) => {
       callback(err, result);
     }
